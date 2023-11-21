@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{lipsum}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+\setlength{\parskip}{2pt}
+
+\spacing{1.3}
+
+\title{Complejidad computacional}
+\author{Agustín Samper, Facundo Llaudet y Guillermo Pereyra}
+\date{November 2023}
+
+\begin{document}
+\maketitle
+\section*{Introducción}
+%\setlength{\parindent}{15pt}
+Veremos como los problemas pueden ser clasificados por su nivel de dificultad. \newline
+\indent La mayoría de los problemas que consideramos en la materia son de 
+carácter general, aplicados a todos los miembros de alguna familia de
+grafos o digrafos. Por una instancia de un problema, nos referimos al
+problema aplicado a un miembro específico de la familia. Por ejemplo,
+una instancia del problema de el árbol recubridor de peso mínimo es el
+problema de encontrar un árbol óptimo (árbol recubridor de peso mínimo)
+para un grafo ponderado particular. \newline
+%\setlength{\parindent}{15pt}
+\indent Un algoritmo para resolver un problema es un procedimiento
+computacional bien definido, el cual acepta cualquier instancia del problema
+como entrada y retorna una solución al problema como salida. Por ejemplo,
+el algoritmo de Prim acepta como entrada un grafo ponderado y retorna un
+árbol óptimo. \newline
+%ver si agregar lo que está antes en el libro
+\indent Por complejidad computacional de un algoritmo, nos referimos a el
+número de pasos básicos computacionales (como operaciones aritméticas y
+comparaciones) requeridas para su ejecución. Este número depende claramente
+de la tamaño y de la naturaleza de la entrada. \newline
+\indent Diremos que un algoritmo es polinomial cuando el número de
+operaciones que efectúa está acotado por una función polinomial en
+el tamaño de su entrada, el algoritmo es llamado \textit{algoritmo
+de tiempo polinomial}. Además, está calificado como \textit{tiempo lineal}
+si el polinomio es una función lineal, \textit{tiempo cuadrático} si 
+es una función cuadrática y así sucesivamente.
+
+\section*{La clase \textit{P}}
+La importancia de algoritmos de tiempo polinomial es que estos algoritmos
+generalmente son computacionalmente realizables, incluso para grandes
+tamaños de entrada. En contraste, los algoritmos cuya complejidad es
+exponencial en el tamaño de su entrada tienen tiempos de ejecución los
+cuales los hacen inutilizables, incluso para entradas de un tamaño
+moderado.
+
+\end{document}
