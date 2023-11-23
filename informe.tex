@@ -65,19 +65,23 @@ incluso para entradas de un tamaño moderado. Por ejemplo, un algoritmo
 el cual verifica si dos grafos con n vértices son isomorfos o no 
 considerando todas las n! biyecciones entre sus conjuntos de vértices es
 realizable solo para pequeños valores de n (específicamente no mayor a 20).\newline
- \indent Estos algoritmos dan lugar a una nueva clase de problemas que llamaremos
- problemas de clase \textit{$\mathcal{N}\mathcal{P}$}.\newline
+\indent Estos algoritmos dan lugar a una nueva clase de problemas que llamaremos
+problemas de clase \textit{$\mathcal{N}\mathcal{P}$}.\newline
 
 \indent
 \section*{Las Clases \textit{\textbf{$\mathcal{N}\mathcal{P}$}} y
 \textit{\textbf{co-$\mathcal{N}\mathcal{P}$}}}
 \indent Necesitamos primero definir que un \textit{problema de decisión}
-es una pregunta cuya respuesta es 'sí' o 'no'. Dado un problema cualquiera
-de este tipo, este pertenecerá a la clase \textit{$\mathcal{P}$} si existe un
-algoritmo que lo resuelve en tiempo polinomial. En cambio, dada una instancia
+es una pregunta cuya respuesta es 'sí' o 'no'. Tal problema pertenece
+a la clase \textit{$\mathcal{P}$} si existe un algoritmo de tiempo
+polinomial que resuelve cualquier instancia del problema en tiempo
+polinomial. En cambio, dada una instancia
 cualquiera del problema cuya respuesta es 'sí', si existe alguna forma de 
-certificar que la afirmación es válida en un tiempo polinomial, entonces este problema
-pertenece a la clase \textit{$\mathcal{N}\mathcal{P}$}. Análogamente, un problema pertenecerá a la clase \textit{co-$\mathcal{N}\mathcal{P}$} si para una instancia cualquiera del problema cuya respuesta es 'no' y existe una forma de certificar que dicha afirmación es válida en tiempo polinomial.\newline
+certificar que la afirmación es válida en tiempo polinomial, entonces este problema
+pertenece a la clase \textit{$\mathcal{N}\mathcal{P}$}. Análogamente,
+un problema pertenecerá a la clase \textit{co-$\mathcal{N}\mathcal{P}$} si para
+una instancia cualquiera del problema cuya respuesta es 'no', existe una forma
+de certificar dicha respuesta en tiempo polinomial.\newline
 \indent Es inmediato ver que $\textit{$\mathcal{P}$} \subseteq \textit{$\mathcal{N}\mathcal{P}$}$, pues por definición, para un problema \textit{$\mathcal{P}$} existe un algoritmo que resuelve en tiempo polinomial cualquier instancia del problema, en particular lo hará para aquellas cuya respuesta es 'sí'. Siguiendo la misma lógica para las instancias cuyas respuestas es 'no', llegamos a la conclusión que $\textit{$\mathcal{P}$} \subseteq \textit{co-$\mathcal{N}\mathcal{P}$}$. Entonces, podemos ver que:\newline
 \begin{align*}
     \textit{$\mathcal{P}$} \subseteq \textit{$\mathcal{N}\mathcal{P}$} \cap \textit{co-$\mathcal{N}\mathcal{P}$}
