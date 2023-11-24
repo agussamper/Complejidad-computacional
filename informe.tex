@@ -74,10 +74,9 @@ considerando todas las n! biyecciones entre sus conjuntos de vértices es
 realizable solo para pequeños valores de n (específicamente no mayor a 20).
 
 Estos algoritmos dan lugar a una nueva clase de problemas que llamaremos
-problemas de clase $\mathcal{N}\mathcal{P}$.
+problemas de clase $\mathcal{NP}$.
 
-\section*{Las Clases $\mathcal{N}\mathcal{P}$ y
-$co-\mathcal{N}\mathcal{P}$}
+\section*{Las Clases $\mathcal{NP}$ y co-$\mathcal{NP}$}
 Necesitamos primero definir que un \textit{problema de decisión}
 es una pregunta cuya respuesta es 'sí' o 'no'. Tal problema pertenece
 a la clase $\mathcal{P}$ si existe un algoritmo de tiempo
@@ -85,37 +84,54 @@ polinomial que resuelve cualquier instancia del problema en tiempo
 polinomial. En cambio, dada una instancia
 cualquiera del problema cuya respuesta es 'sí', si existe alguna forma de 
 certificar que la afirmación es válida en tiempo polinomial, entonces este problema
-pertenece a la clase $\mathcal{N}\mathcal{P}$; tal certificado decimos
+pertenece a la clase $\mathcal{NP}$; tal certificado decimos
 que es un certificado sucinto. Análogamente,
-un problema pertenecerá a la clase $co-\mathcal{N}\mathcal{P}$ si para
+un problema pertenecerá a la clase co-$\mathcal{NP}$ si para
 una instancia cualquiera del problema cuya respuesta es 'no', existe un
 certificado sucinto.
 
 Es inmediato ver que 
-$\mathcal{P}$ $\subseteq$ \textit{$\mathcal{N}\mathcal{P}$},
+$\mathcal{P}$ $\subseteq$ \textit{$\mathcal{NP}$},
 pues por definición, para un problema $\mathcal{P}$ existe
 un algoritmo que resuelve en tiempo polinomial cualquier instancia
 del problema, en particular lo hará para aquellas cuya respuesta es
 'sí'. Siguiendo la misma lógica para las instancias cuyas respuestas
 es 'no', llegamos a la conclusión que $\mathcal{P}$
-$\subseteq$ $co-\mathcal{N}\mathcal{P}$. Entonces, podemos
+$\subseteq$ co$-\mathcal{NP}$. Entonces, podemos
 ver que:
 \begin{align*}
-    \mathcal{P} \subseteq \mathcal{N}\mathcal{P}
-    \cap co-\mathcal{N}\mathcal{P}
+    \mathcal{P} \subseteq \mathcal{NP}
+    \cap co-\mathcal{NP}
 \end{align*}
 
 Consideremos, por ejemplo, el problema de determinar
 si un grafo es bipartito. Este problema de decisión pertenece
-a $\mathcal{N}\mathcal{P}$, porque un bipartición es un verificado
+a $\mathcal{NP}$, porque un bipartición es un verificado
 sucinto, en efecto, dada una bipartición $(X,Y)$ de un grafo
 bipartito $G$, es suficiente verificar que cada vértice de $G$
 tiene un extremo en $X$ y otro en $Y$. Además el problema pertenece
-a \textit{co-}$\mathcal{N}\mathcal{P}$ ya que un grafo es bipartito si y sólo
+a co-$\mathcal{NP}$ ya que un grafo es bipartito si y sólo
 si no tiene ciclos impar, y cualquier ciclo, es un certificado sucinto
 de que el grafo no es bipartito. Por lo tanto, este problema 
-pertenece a $\mathcal{N}\mathcal{P}$ \textit{co-}$\mathcal{N}\mathcal{P}$ y 
-hemos señalado tres relaciones de inclusión entre las clases \textit{$\mathcal{P}$}, \textit{$\mathcal{N}\mathcal{P}$} y \textit{co-$\mathcal{N}\mathcal{P}$}, y es natural preguntarse si estas inclusiones son adecuadas. Debido a que \textit{$\mathcal{P}$} = \textit{$\mathcal{N}\mathcal{P}$} si y solo si \textit{$\mathcal{P}$} = \textit{co-$\mathcal{N}\mathcal{P}$}, surgen dos preguntas fundamentales, ambas de las cuales se han planteado como conjeturas. 
+pertenece a $\mathcal{NP} \cap$ co-$\mathcal{NP}$.
+
+Consideremos ahora el problema de si hay un ciclo hamiltoniano.
+Si la respuesta el 'si', luego cualquier ciclo hamiltoniano sirve
+de certificado sucinto. Sin embargo, si la respuesta es 'no', no
+hay un certificado sucinto conocido. A pesar de que claramente
+este problema es de la clase $\mathcal{NP}$, no se ha demostrado
+que pertenece a co-$\mathcal{NP}$, y es probable que no
+pertenezca a esta clase. Pasa lo mismo con el problema de
+decision para caminos hamiltonianos.
+
+Hemos señalado tres relaciones de inclusión entre las clases
+$\mathcal{P}$, $\mathcal{N}\mathcal{P}$ y
+co$-\mathcal{N}\mathcal{P}$, y es natural preguntarse
+si estas inclusiones son adecuadas. Debido a que
+$\mathcal{P} = \mathcal{N}\mathcal{P}$
+si y solo si $\mathcal{P} = $ co-$\mathcal{N}\mathcal{P}$,
+surgen dos preguntas fundamentales, ambas de las cuales se han 
+planteado como conjeturas. 
 
 \setlength{\fboxsep}{10pt}
 \noindent\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
@@ -129,9 +145,15 @@ Esta conjetura es una de las más famosas e importantes preguntas abiertas que e
 \noindent\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
  \subsection*{La conjetura de Edmonds}
         \begin{align*}
-            \textit{$\mathcal{P}$} = \textit{$\mathcal{N}\mathcal{P}$} \cap \textit{co-$\mathcal{N}\mathcal{P}$}
+            \mathcal{P} = \mathcal{NP}
+            \cap co-\mathcal{N}\mathcal{P}
         \end{align*}
-\indent Esta conjetura también fue propuesta por Edmonds en 1965 y está fuertemente respaldada por evidencia empírica. Se sabe que la mayoría de los problemas que sabemos que pertenecen a $\textit{$\mathcal{N}\mathcal{P}$} \cap \textit{co-$\mathcal{N}\mathcal{P}$}$
+\indent Esta conjetura también fue propuesta por Edmonds en 1965 y está
+fuertemente respaldada por evidencia empírica. Se sabe que la mayoría
+de los problemas que sabemos que pertenecen a \newline
+\textit{$\mathcal{N}\mathcal{P}$} $\cap$ \textit{co-}$\mathcal{N}\mathcal{P}$
+también se sabe que pertenecen a $\mathcal{P}$
+
 \end{minipage}}
 
 \section*{Reducciones Polinomiales}
