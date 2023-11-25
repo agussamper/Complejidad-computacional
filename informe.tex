@@ -6,11 +6,15 @@
 \usepackage{setspace}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
-\usepackage{amsmath}
+\usepackage{amssymb,amsmath,amsthm, amsfonts}
+
 
 \setlength{\parskip}{2pt}
 
 \spacing{1.3}
+
+\newtheorem{theorem}{Teorema}
+\newtheorem{problem}{Problema}
 
 \title{Complejidad computacional}
 \author{Agustín Samper, Facundo Llaudet y Guillermo Pereyra}
@@ -85,10 +89,10 @@ polinomial. En cambio, dada una instancia
 cualquiera del problema cuya respuesta es 'sí', si existe alguna forma de 
 certificar que la afirmación es válida en tiempo polinomial, entonces este problema
 pertenece a la clase $\mathcal{NP}$; tal certificado decimos
-que es un certificado sucinto. Análogamente,
+que es un certificado suficiente. Análogamente,
 un problema pertenecerá a la clase co-$\mathcal{NP}$ si para
 una instancia cualquiera del problema cuya respuesta es 'no', existe un
-certificado sucinto.
+certificado suficiente.
 
 Es inmediato ver que 
 $\mathcal{P}$ $\subseteq$ \textit{$\mathcal{NP}$},
@@ -106,23 +110,25 @@ ver que:
 
 Consideremos, por ejemplo, el problema de determinar
 si un grafo es bipartito. Este problema de decisión pertenece
-a $\mathcal{NP}$, porque un bipartición es un verificado
-sucinto, en efecto, dada una bipartición $(X,Y)$ de un grafo
-bipartito $G$, es suficiente verificar que cada vértice de $G$
-tiene un extremo en $X$ y otro en $Y$. Además el problema pertenece
-a co-$\mathcal{NP}$ ya que un grafo es bipartito si y sólo
-si no tiene ciclos impar, y cualquier ciclo, es un certificado sucinto
-de que el grafo no es bipartito. Por lo tanto, este problema 
-pertenece a $\mathcal{NP} \cap$ co-$\mathcal{NP}$.
+a $\mathcal{NP}$, ya que si existe una bipartición válida, esta es un
+certificado suficiente de que el grafo es bipartito, en efecto,
+dada una bipartición $(X,Y)$ de un grafo $G$, es
+suficiente con verificar que cada vértice de $G$
+tiene un extremo en $X$ y otro en $Y$ para probar que $G$ es bipartito.
+Además, el problema pertenece a co-$\mathcal{NP}$ ya que un grafo es 
+bipartito si y solo si no tiene ciclos impares, y cualquier ciclo, es un 
+certificado suficiente de que el grafo no es bipartito. Por lo tanto, 
+este problema pertenece a $\mathcal{NP} \cap$ co-$\mathcal{NP}$.
 
-Consideremos ahora el problema de si hay un ciclo hamiltoniano.
-Si la respuesta el 'si', luego cualquier ciclo hamiltoniano sirve
-de certificado sucinto. Sin embargo, si la respuesta es 'no', no
-hay un certificado sucinto conocido. A pesar de que claramente
+Consideremos ahora el problema siguiente problema: Dado un grafo $G$ tal 
+que $G$ tiene un ciclo hamiltoniano.
+Si la respuesta es 'sí', mostrar un ciclo hamiltoniano cualquiera sirve
+de certificado suficiente. Sin embargo, si la respuesta es 'no', no
+hay un certificado suficiente conocido. A pesar de que claramente
 este problema es de la clase $\mathcal{NP}$, no se ha demostrado
 que pertenece a co-$\mathcal{NP}$, y es probable que no
 pertenezca a esta clase. Pasa lo mismo con el problema de
-decision para caminos hamiltonianos.
+decisión para caminos hamiltonianos.
 
 Hemos señalado tres relaciones de inclusión entre las clases
 $\mathcal{P}$, $\mathcal{N}\mathcal{P}$ y
@@ -157,23 +163,174 @@ también se sabe que pertenecen a $\mathcal{P}$
 \end{minipage}}
 
 \section*{Reducciones Polinomiales}
-\indent Es común que para resolver un problema se intente transformar el problema original en uno cuya solución ya es conocida, para luego tomar esa solución y transformarla en una para el problema original. Tomando esta idea, definimos a la \textit{reducción polinomial} de un problema \textbf{P} a un problema \textbf{Q}, como el par de algoritmos polinómicos tal que uno transforma cada instancia \textbf{I} de \textbf{P} en una instancia \textbf{J} de \textbf{Q}, y el otro transforma la solución para una instancia \textbf{J} en una solución de una instancia \textbf{I}. Si existen estos algoritmos, diremos que la reducción existe y que \textbf{P} es \textit{polinómicamente reducible} a \textbf{Q} y lo representamos como $\textit{P} \preceq \textit{Q}$; esta relación entre problemas es reflexiva y transitiva.\newline
-\indent Una de las claves de la reducción polinomial es que si $\textit{P} \preceq \textit{Q}$ y existe un algoritmo polinómico que resuelve \textbf{Q} entonces ese algoritmo puede ser convertido en un algoritmo polinómico para resolver \textbf{P}. En símbolos:
+\indent Es común que para resolver un problema se intente transformar
+el problema original en uno cuya solución ya es conocida, para luego
+tomar esa solución y transformarla en una para el problema original.
+Por supuesto, esto es conveniente solo si la transformación puede
+ser hecha rápidamente. Tomando esta idea, definimos a la
+\textit{reducción polinomial} de un problema $P$ a un problema $Q$ como el par de algoritmos polinómicos tal que uno transforma cada instancia $I$ de $P$ en una instancia $J$ de $Q$, y el otro transforma la solución para una instancia $Q$ en una solución de una instancia $I$. Si existen estos algoritmos, diremos que la reducción existe y que $P$ es \textit{polinómicamente reducible} a $Q$ y lo representamos como $\textit{P} \preceq \textit{Q}$; esta relación claramente es reflexiva y transitiva.\newline
+\indent Una de las claves de la reducción polinomial es que si $\textit{P} \preceq \textit{Q}$ y existe un algoritmo polinómico que resuelve $Q$, entonces ese algoritmo puede ser convertido en un algoritmo polinómico para resolver $P$. En símbolos:
 \begin{align*}
     P \preceq Q \land Q \in \mathcal{P} \implies P \in \mathcal{P}
 \end{align*}
 
-\textbf{PONER EJEMPLO PARA REDUCCION}
+Un ejemplo de lo mencionado arriba es la reducción polinomial para el
+problema de encontrar un árbol recubridor de peso máximo, el problema
+consiste en lo siguiente, dado un grafo ponderado conexo $G$, encontrar
+un árbol recubridor de peso máximo para el mismo.
 
+Para resolver una instancia del problema mencionado anteriormente,
+es suficiente reemplazar cada peso por su opuesto y aplicar el algoritmo
+de Prim para encontrar un árbol óptimo en el grafo ponderado resultante.
+Este árbol será de peso máximo en el grafo ponderado original.
 
-\section*{Problemas $\mathcal{NP}$-Completos  -   La clase $\mathcal{NPC}$}
-Podemos definir informalmente a los problemas que pertenecen a la clase $\mathcal{NPC}$ como los problemas que pertenecen a la clase $\mathcal{NP}$ que son por lo menos tan complicados de resolver como cualquier problema $\mathcal{NP}$. Formalmente, decimos que un problema P $\in \mathcal{NP}$ es $\mathcal{NPC}$ si $P' \preceq P$ para todo problema P' $\in \mathcal{NP}$.
+\section*{La clase $\mathcal{NPC}$ - Problemas $\mathcal{NP}$-Completos}
+Podemos definir informalmente a los problemas que pertenecen a la clase
+$\mathcal{NPC}$ como los problemas que pertenecen a la clase $\mathcal{NP}$
+que son por lo menos tan complicados de resolver como cualquier problema
+$\mathcal{NP}$. Formalmente, decimos que un problema P $\in \mathcal{NP}$
+es $\mathcal{NPC}$ si $P' \preceq P$ para todo problema P' $\in \mathcal{NP}$.
+La clase de problemas $\mathcal{NP-}completos$ es denotada por $\mathcal{NPC}$.
 
-Para probar que un problema Q $\mathcal{NP}$ es un $\mathcal{NPC}$, es suficiente con encontrar una reducción polinómica de Q a algún P $\in \mathcal{NPC}$ conocido. En símbolos:
+Para probar que un problema Q en $\mathcal{NP}$ es $\mathcal{NPC}$,
+es suficiente con encontrar una reducción polinomial para Q a algún P
+$\in \mathcal{NPC}$ conocido. En símbolos:
 \begin{align*}
     P \preceq Q \land P \in \mathcal{NPC} \implies Q\in   \mathcal{NPC}
 \end{align*}
 
-\textbf{ESCRIBIR SOBRE EL TEOREMA 8.8 Y SI O SI DEL PROBLEMA 8.9 Y TEOREMA 8.10}
+Cook y Levin probaron que en efecto existen problemas $\mathcal{NPC}$.
+Más precisamente, probaron que el problema de satisfactibilidad para
+fórmulas booleanas es $\mathcal{NPC}$. Describiremos este problema.
+
+\subsection{Satisfactibilidad de fórmula booleana}
+Una fórmula booleana es \textit{satisfactible} si hay una asignación
+de valores de verdad de sus variables para el cual el valor de
+verdad de las formulas es 1. En este casom devimos que la fórmula
+es satisfactible por la asignación.
+
+\begin{problem}[Satisfactibilidad Booleana (SAT)]
+Dada una formula $f$ nos preguntamos si $f$ es satisfactible.
+
+Observemos que SAT pertenece a $\mathcal{NP}$: Dada una asignación
+apropiada de valores de verdad para las variables de $f$, puede
+ser verificado en tiempo polinomial que el valor de la fórmula
+es en efecto 1. Estos valores de las variables constituyen
+un certificado suficiente. Además Cook y Levin probaron que
+SAT es un problema $\mathcal{NPC}$.
+\end{problem}
+
+\begin{theorem}[El teorema de Cook-Levin]
+SAT es un problema de la clase $\mathcal{NPC}$.
+\end{theorem}
+La prueba del teorema de Cook-Levin utiliza máquinas de Turing
+y va más allá de este informe. La prueba puede ser encontrada
+en Garey and Johnson (1979) o Sipser (2005).
+
+Aplicando el teorema 1, Karp probó que muchos problemas de
+combinaroria son $\mathcal{NPC}$, uno de estos es el problema
+de grafos hamililtonianos dirijidos. Para probar estas ideas
+necesitamos algunas definiciones.
+
+Una variable $x$, o su negación $\overline{x}$, son literales,
+y una disyunción o conjunción de literales es una cláusula
+de disyunción o conjunción.
+
+Cualquier conjunción de cláusulas disyuntivas es llamada como
+una fórmula en forma normal conjuntiva. Puede ser probado 
+(por reducción polinomial) que toda fórmula es equivalente
+a una en forma normal conjuntiva. Además, como explicamos más
+abajo en la prueba del teorema 2, cada fórmula booleana en 
+forma norma conjuntiva es equivalente a una en forma normal
+conjuntiva con exactamente tres literales por cláusula. El
+problema de decisón para tal fórmula booleana es conocido como
+3-SAT
+
+\begin{problem}[Satisfactibilidad Booleana (SAT)]
+Dada una fórmula $f$ en forma normal conjuntiva con tres
+literales por cláusula, decidir si $f$ es satisfactible.
+\end{problem}
+
+\begin{theorem}[Satisfactibilidad Booleana (SAT)]
+El problema 3-SAT es $\mathcal{NPC}$.
+\end{theorem}
+
+\begin{proof}
+Por el teorema 1
+es suficiente probar que SAT $\preceq$ 3-SAT. Sea $f$ una
+fórmula booleana satisfactible en forma normal conjuntiva.
+Mostraremos cómo construir, en tiempo polinómico, una
+fórmula booleana $f'$ en forma normal conjuntiva tal que:
+\begin{enumerate}
+\item Cada cláusula en $f'$ tiene tres literales
+\item $f$ es satisfactible si y sólo si $f'$ es satisfactible
+\end{enumerate}
+\noindent Tal formula $f'$ puede ser obtenida por la adición
+de nuevas variables y cláusulas como sigue.
+
+Supongamos que alguna cláusula de $f$ tiene sólo dos literales,
+por ejemplo, la cláusula $(x_1 \vee x_2)$. En este caso,
+simplemente reemplazamos esta cláusula por dos cláusulas con
+tres literales $(x_1 \vee x_2 \vee x)$ y 
+$(\overline{x} \vee x_1 \vee x_2)$, donde $x$ es una variable
+nueva. Claramente,
+\begin{align*}
+    (x_1 \vee x_2) \equiv (x_1 \vee x_2 \vee x) \land
+    (\overline{x} \vee x_1 \vee x_2)
+\end{align*}
+Cláusulas con sólo un literal pueden ser tratadas de manera similar.
+
+Ahora supongamos que alguna clausula 
+$(x_1 \vee x_2 \vee ... \vee x_k)$ de $f$ tiene $k$ literales, donde
+$k \geq 4$. En este caso, agregamos $k-3$ nuevas variables
+$y_1,y_2,...,y_{k-3}$ y formamos las siguientes $k-2$ clausulas,
+donde cada una tiene tres literales.
+\begin{align*}
+    (x_1 \vee x_2 \vee y_1), (\overline{y}_1 \vee x_3 \vee y_2),
+    (\overline{y}_2 \vee x_4 \vee y_3),..., 
+    (\overline{y}_{k-4} \vee x_{k-2} \vee y_{k-3}),
+    (\overline{y}_{k-3} \vee x_{k-1} \vee x_k)
+\end{align*}
+Se puede verificar que $(x_1 \vee x_2 \vee ... \vee x_k)$ es
+equivalente a lo conjunción de estas $k-2$ cláusulas.
+\end{proof}
+
+El teorema 2 puede ser usado para establecer que varios
+problemas en teoría de grafos son $\mathcal{NPC}$, en particular
+para el problema de \textit{ciclos hamiltonianos dirigidos}
+usando además reducción polinomial.
+
+Como hemos observado, en orden de mostrar que un problema
+de decisión $Q$ en $\mathcal{NP}$ es $\mathcal{NP}$, es 
+suficiente con encontrar una reducción polinomial para $Q$ de un
+problema que se sabe que es $\mathcal{NPC}$.
+
+Veamos un ejemplo de un problema para el cual no se sabe si
+pertenece a la clase $\mathcal{P}$ o $\mathcal{NP}$:
+
+\begin{problem}[Isomorfismo de grafos]
+Dados dos grafos $G$ y $H$. ¿Son isomorfos?.
+
+La complejidad de este problema es un misterio. Es claro que
+este problema pertenece a $\mathcal{NP}$, pero no se sabe
+si pertenece a $\mathcal{P}$, $co-\mathcal{NP}$ o a $\mathcal{NPC}$.
+Se han encontrado algunos algoritmos polinomiales para algunas
+clases de grafos, pero estos algoritmos no sirven para todos
+los grafos. Este problema podría ser un contraejemplo para
+la conjetura de Edmonds.
+\end{problem}
+
+\section*{Los problemas $\mathcal{NP}$-Hard ($\mathcal{NPH}$)}
+Así como definimos a los problemas $\mathcal{NP}$-Completo, como aquellos problemas al menos tan complejos como cualquier problema $\mathcal{NP}$, los problemas $\mathcal{NP}$-Hard serán aquellos problemas al menos tan complejos como los $\mathcal{NP}$-Completos, pero con la salvedad de que no tiene por qué ser problemas de decisión.
+Al igual que con los $\mathcal{NP}$-Completos, una definición más precisa de los problemas $\mathcal{NPH}$ es la siguiente:
+\begin{align*}
+    P \preceq Q \land P \in \mathcal{NPH} \implies Q\in   \mathcal{NPH}
+\end{align*}
+Pero lo interesante sobre los problemas $\mathcal{NPH}$ es lo siguiente: sabemos que cualquier problema $\mathcal{NPC}$ puede ser reducido polinómicamente a otro problema $\mathcal{NPC}$, ahora si encontráramos una solución polinómica a un problema $\mathcal{NPH}$, que por definición es más complejo que cualquier otro problema $\mathcal{NPC}$, entonces podríamos asegurar que existiría al menos una solución polinómica para todos los problemas $\mathcal{NPC}$ y por consiguiente para todos los $\mathcal{NP}$, lo que daría por cierta la conjetura de Edmonds.
+Entre los problemas $\mathcal{NPH}$ más conocidos tenemos: dado un grafo $G$, encontrar su clique máxima, encontrar su estable maximo y/o el problema del viajero.
+
+\section*{Aproximación Algorítmica}
+Existen ciertos problemas $\mathcal{NPH}$, como el problema del viajero, cuya optimización es de alto interés práctico, pero como vimos anteriormente, todo parece indicar que no va a ser posible encontrar una solución en tiempo polinómica a este problema, por eso es habitual que se busquen de algoritmos que devuelvan resultados lo más cercanos posible al esperado.\newline
+Dado un número real t $\geq$ 1, una t-\textit{aproximación algorítmica} de un problema $P$, es un algoritmo que acepta cualquier instancia del problema como input y devuelve una solución fehaciente, cuyo valor no es más que t veces el valor óptimo esperado. Mientras menor la t, mejor será la aproximación.
 
 \end{document}
