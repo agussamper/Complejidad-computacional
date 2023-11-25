@@ -15,6 +15,7 @@
 
 \newtheorem{theorem}{Teorema}
 \newtheorem{problem}{Problema}
+\newtheorem{obs}{Observación}
 
 \title{Complejidad computacional}
 \author{Agustín Samper, Facundo Llaudet y Guillermo Pereyra}
@@ -120,15 +121,24 @@ bipartito si y solo si no tiene ciclos impares, y cualquier ciclo, es un
 certificado suficiente de que el grafo no es bipartito. Por lo tanto, 
 este problema pertenece a $\mathcal{NP} \cap$ co-$\mathcal{NP}$.
 
-Consideremos ahora el problema siguiente problema: Dado un grafo $G$ tal 
-que $G$ tiene un ciclo hamiltoniano.
-Si la respuesta es 'sí', mostrar un ciclo hamiltoniano cualquiera sirve
-de certificado suficiente. Sin embargo, si la respuesta es 'no', no
-hay un certificado suficiente conocido. A pesar de que claramente
-este problema es de la clase $\mathcal{NP}$, no se ha demostrado
+Consideremos ahora el siguiente problema
+\begin{problem}[Ciclo hamiltoniano]
+    Dado un grafo $G$, determinar si G tiene un ciclo hamiltoniano.
+\end{problem}
+Si la respuesta es 'sí', mostrar un ciclo hamiltoniano cualquiera sirve de certificado suficiente. Sin embargo, si la respuesta
+es 'no', no hay un certificado suficiente conocido. A pesar 
+de que claramente este problema es de la clase $\mathcal{NP}$,
+no se ha demostrado
 que pertenece a co-$\mathcal{NP}$, y es probable que no
 pertenezca a esta clase. Pasa lo mismo con el problema de
 decisión para caminos hamiltonianos.
+
+Un problema análogo al anterior el es de ciclo hamiltoniano
+dirigido.
+\begin{problem}[Ciclo Hamiltoniano Dirigido]
+    Dado un digrafo $G$, determinar si G tiene un
+    ciclo hamiltoniano dirigido.
+\end{problem}
 
 Hemos señalado tres relaciones de inclusión entre las clases
 $\mathcal{P}$, $\mathcal{N}\mathcal{P}$ y
@@ -192,9 +202,9 @@ $\mathcal{NP}$. Formalmente, decimos que un problema P $\in \mathcal{NP}$
 es $\mathcal{NPC}$ si $P' \preceq P$ para todo problema P' $\in \mathcal{NP}$.
 La clase de problemas $\mathcal{NP-}completos$ es denotada por $\mathcal{NPC}$.
 
-Para probar que un problema Q en $\mathcal{NP}$ es $\mathcal{NPC}$,
-es suficiente con encontrar una reducción polinomial para Q a algún P
-$\in \mathcal{NPC}$ conocido. En símbolos:
+Para probar que un problema $Q$ en $\mathcal{NP}$ es $\mathcal{NPC}$,
+es suficiente con encontrar una reducción polinomial de $P$ a $Q$
+donde $P$ es algún problema $\mathcal{NPC}$ conocido. En símbolos:
 \begin{align*}
     P \preceq Q \land P \in \mathcal{NPC} \implies Q\in   \mathcal{NPC}
 \end{align*}
@@ -229,8 +239,8 @@ en Garey and Johnson (1979) o Sipser (2005).
 
 Aplicando el teorema 1, Karp probó que muchos problemas de
 combinaroria son $\mathcal{NPC}$, uno de estos es el problema
-de grafos hamililtonianos dirigidos. Para probar estas ideas
-necesitamos algunas definiciones.
+de Grafo Hamililtoniano Dirigido. Para explicar la manera
+en que lo probó se necesitan algunas definiciones.
 
 Una variable $x$, o su negación $\overline{x}$, son literales,
 y una disyunción o conjunción de literales es una cláusula
@@ -319,6 +329,40 @@ clases de grafos, pero estos algoritmos no sirven para todos
 los grafos. Este problema podría ser un contraejemplo para
 la conjetura de Edmonds.
 \end{problem}
+
+\begin{obs}
+    Se puede mostrar que el problema de Ciclo Hamiltoniano
+    Dirigido es $\mathcal{NPC}$ reduciendolo a 3-SAT usando
+    un problema intermedio que se llama Cubrimiento Exacto.
+    Que describimos a continuación.
+    
+        Sea $\mathcal{A}$ una familia de subconjuntos
+        finitos de un conjunto finito $X$. Un cubrimiento exacto
+        de $X$ por $\mathcal{A}$ es una partición de $X$, donde
+        cada elemento de $X$ pertenece a algún conjunto de 
+        $\mathcal{A}$. Por ejemplo, si $X = \{x_1, x_2, x_3\}$
+        y $\mathcal{A} = \{\{x_1\},\{x_1,x_2\},\{x_2,x_3\}\}$,
+        entonces
+        $\{\{x_1\},\{x_2,x_3\}\}$ es un cubrimiento exacto de $X$
+        por $\mathcal{A}$. Esta noción de lugar al siguiente
+        problema de decisión
+    \begin{problem}[Cubrimiento Exacto]
+        Dado una conjunto $X$ y una familia $\mathcal{A}$ de
+        subconjuntos de $X$, decidir si hay un cubrimiento exacto
+        para $\mathcal{A}$.
+    \end{problem}
+    Para probar que el problema de Ciclo Hamiltoniano Dirigido
+    es $\mathcal{NPC}$ primero se hace una reducción polinomial
+    de 3-SAT a cubrimiento exacto y luego otra reducción polinomial
+    de Cubrimiento Exacto a Ciclo Hamiltoniano Dirigido. La cadena
+    de reducción es la siguiente:
+    \begin{align*}
+    SAT \preceq 3\text{-}SAT \preceq \text{Cubrimiento Exacto}  \preceq
+    \text{Ciclo Hamiltoniano Dirigido}
+    \end{align*}
+    De donde resultará por el teorema 1 que el problema de
+    Ciclo Hamiltoniano Dirigido es $\mathcal{NPC}$.
+\end{obs}
 
 \section*{Los problemas $\mathcal{NP}$-Hard ($\mathcal{NPH}$)}
 Así como definimos a los problemas $\mathcal{NP}$-Completo, como aquellos problemas al menos tan complejos como cualquier problema $\mathcal{NP}$, los problemas $\mathcal{NP}$-Hard serán aquellos problemas al menos tan complejos como los $\mathcal{NP}$-Completos, pero con la salvedad de que no tiene por qué ser problemas de decisión.
