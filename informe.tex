@@ -50,7 +50,7 @@ naturaleza de la entrada.
 
 Diremos que un algoritmo es polinomial cuando el número de
 operaciones que efectúa está acotado por una función polinomial en
-el tamaño de su entrada, el algoritmo es llamado \textit{algoritmo
+el tamaño de su entrada, tal algoritmo es llamado \textit{algoritmo
 de tiempo polinomial}. Además, está calificado como \textit{tiempo lineal}
 si el polinomio es una función lineal, \textit{tiempo cuadrático} si 
 es una función cuadrática y así sucesivamente.
@@ -71,7 +71,7 @@ lineales en el número de aristas.
 
 En contraste a los algoritmos de tiempo polinomial, los
 algoritmos cuya complejidad es exponencial en el tamaño de su
-entrada tienen tiempos de ejecución, los cuales los hacen inutilizables,
+entrada tienen tiempos de ejecución los cuales los hacen inutilizables,
 incluso para entradas de un tamaño moderado. Por ejemplo, un algoritmo
 el cual verifica si dos grafos con n vértices son isomorfos o no 
 considerando todas las n! biyecciones entre sus conjuntos de vértices es
@@ -203,10 +203,10 @@ Cook y Levin probaron que en efecto existen problemas $\mathcal{NPC}$.
 Más precisamente, probaron que el problema de satisfactibilidad para
 fórmulas booleanas es $\mathcal{NPC}$. Describiremos este problema.
 
-\subsection{Satisfactibilidad de fórmula booleana}
+\subsection*{Satisfactibilidad de fórmula booleana}
 Una fórmula booleana es \textit{satisfactible} si hay una asignación
 de valores de verdad de sus variables para el cual el valor de
-verdad de las formulas es 1. En este casom devimos que la fórmula
+verdad de las formulas es 1. En este caso decimos que la fórmula
 es satisfactible por la asignación.
 
 \begin{problem}[Satisfactibilidad Booleana (SAT)]
@@ -229,7 +229,7 @@ en Garey and Johnson (1979) o Sipser (2005).
 
 Aplicando el teorema 1, Karp probó que muchos problemas de
 combinaroria son $\mathcal{NPC}$, uno de estos es el problema
-de grafos hamililtonianos dirijidos. Para probar estas ideas
+de grafos hamililtonianos dirigidos. Para probar estas ideas
 necesitamos algunas definiciones.
 
 Una variable $x$, o su negación $\overline{x}$, son literales,
@@ -278,12 +278,12 @@ nueva. Claramente,
     (x_1 \vee x_2) \equiv (x_1 \vee x_2 \vee x) \land
     (\overline{x} \vee x_1 \vee x_2)
 \end{align*}
-Cláusulas con sólo un literal pueden ser tratadas de manera similar.
+Cláusulas con solo un literal pueden ser tratadas de manera similar.
 
-Ahora supongamos que alguna clausula 
+Ahora supongamos que alguna cláusula 
 $(x_1 \vee x_2 \vee ... \vee x_k)$ de $f$ tiene $k$ literales, donde
 $k \geq 4$. En este caso, agregamos $k-3$ nuevas variables
-$y_1,y_2,...,y_{k-3}$ y formamos las siguientes $k-2$ clausulas,
+$y_1,y_2,...,y_{k-3}$ y formamos las siguientes $k-2$ cláusulas,
 donde cada una tiene tres literales.
 \begin{align*}
     (x_1 \vee x_2 \vee y_1), (\overline{y}_1 \vee x_3 \vee y_2),
@@ -326,7 +326,7 @@ Al igual que con los $\mathcal{NP}$-Completos, una definición más precisa de l
 \begin{align*}
     P \preceq Q \land P \in \mathcal{NPH} \implies Q\in   \mathcal{NPH}
 \end{align*}
-Pero lo interesante sobre los problemas $\mathcal{NPH}$ es lo siguiente: sabemos que cualquier problema $\mathcal{NPC}$ puede ser reducido polinómicamente a otro problema $\mathcal{NPC}$, ahora si encontráramos una solución polinómica a un problema $\mathcal{NPH}$, que por definición es más complejo que cualquier otro problema $\mathcal{NPC}$, entonces podríamos asegurar que existiría al menos una solución polinómica para todos los problemas $\mathcal{NPC}$ y por consiguiente para todos los $\mathcal{NP}$, lo que daría por cierta la conjetura de Edmonds.
+Pero lo interesante sobre los problemas $\mathcal{NPH}$ es lo siguiente: sabemos que cualquier problema $\mathcal{NPC}$ puede ser reducido polinómicamente a otro problema $\mathcal{NPC}$, ahora si encontráramos una solución polinómica a un problema $\mathcal{NPH}$, que por definición es más complejo que cualquier otro problema $\mathcal{NPC}$, entonces podríamos asegurar que existiría al menos una solución polinómica para todos los problemas $\mathcal{NPC}$ y por consiguiente para todos los $\mathcal{NP}$, lo que daría por cierta la conjetura de Edmonds.\newline
 Entre los problemas $\mathcal{NPH}$ más conocidos tenemos: dado un grafo $G$, encontrar su clique máxima, encontrar su estable maximo y/o el problema del viajero.
 
 \section*{Aproximación Algorítmica}
